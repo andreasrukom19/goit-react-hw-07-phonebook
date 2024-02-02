@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import css from './FormAddContacts.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/reducer';
+import { addContact } from '../../redux/operations';
+import { selectContactsItems } from '../../redux/selectors';
 
-export const FormAddContacts = ({ onSubmit }) => {
+export const FormAddContacts = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(store => store.contactsGroup.contacts);
+  const contacts = useSelector(selectContactsItems);
 
   const handleChangeName = event => {
     setName(event.target.value);
